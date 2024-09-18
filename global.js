@@ -1,38 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM fully loaded and parsed");
+// Existing code in global.js (if any)
+// ...
 
-    // Define your pages
-    const pages = [
-        {url: "index.html", title: "Home"},
-        {url: "Projects/index.html", title: "Projects"},
-        {url: "Contact/index.html", title: "Contact"},
-        {url: "Contact/resume.html", title: "Resume"},
-        {url: "https://github.com/EmmaIngabire", title: "GitHub"}
-    ];
+// Utility function to select multiple elements (if not already defined)
+const $$ = (...args) => document.querySelectorAll(...args);
 
-    // Create navigation
-    const nav = document.createElement("nav");
-    const ul = document.createElement("ul");
-    nav.appendChild(ul);
+// Define your pages
+const pages = [
+    {url: "", title: "Home"},
+    {url: "Projects/", title: "Projects"},
+    {url: "Contact/", title: "Contact"},
+    {url: "Contact/resume.html", title: "Resume"},
+    {url: "https://github.com/yourusername", title: "GitHub"}
+];
 
-    // Create and add navigation links
-    for (let p of pages) {
-        let li = document.createElement("li");
-        let a = document.createElement("a");
-        a.href = p.url;
-        a.textContent = p.title;
+// Check if we're on the home page
+const ARE_WE_HOME = document.documentElement.classList.contains("home");
 
-        // Add target="_blank" for external links
-        if (p.url.startsWith("http")) {
-            a.target = "_blank";
-        }
+// Create navigation
+const nav = document.createElement("nav");
+document.body.prepend(nav);
 
-        li.appendChild(a);
-        ul.appendChild(li);
+// Create and add navigation links
+for (let p of pages) {
+    let url = p.url;
+    let title = p.title;
+
+    // Adjust URL for non-home pages
+    url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.textContent = title;
+
+    // Add 'current' class to current page link
+    a.classList.toggle("current", a.host === location.host && a.pathname === location.pathname);
+
+    // Add target="_blank" for external links
+    if (a.host !== location.host) {
+        a.target = "_blank";
     }
 
-    // Insert the navigation at the beginning of the body
-    document.body.prepend(nav);
-
-    console.log("Navigation menu created!");
-});
+    nav.append(a);
+}
