@@ -1,12 +1,6 @@
 console.log("ITS ALIVE!");
-function $$ (selector, context = document) {
-	return Array.from(context.querySelectorAll(selector));
-}
-// Existing code in global.js (if any)
-// ...
-
-// Utility function to select multiple elements (if not already defined)
-const $$ = (...args) => document.querySelectorAll(...args);
+// Utility function to select multiple elements
+const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
 
 // Define your pages
 const pages = [
@@ -14,7 +8,7 @@ const pages = [
     {url: "Projects/", title: "Projects"},
     {url: "Contact/", title: "Contact"},
     {url: "Contact/resume.html", title: "Resume"},
-    {url: "https://github.com/yourusername", title: "GitHub"}
+    {url: "https://github.com/EmmaIngabire", title: "GitHub"}
 ];
 
 // Check if we're on the home page
@@ -22,7 +16,8 @@ const ARE_WE_HOME = document.documentElement.classList.contains("home");
 
 // Create navigation
 const nav = document.createElement("nav");
-document.body.prepend(nav);
+const ul = document.createElement("ul");
+nav.appendChild(ul);
 
 // Create and add navigation links
 for (let p of pages) {
@@ -32,6 +27,7 @@ for (let p of pages) {
     // Adjust URL for non-home pages
     url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
 
+    let li = document.createElement("li");
     let a = document.createElement("a");
     a.href = url;
     a.textContent = title;
@@ -44,5 +40,11 @@ for (let p of pages) {
         a.target = "_blank";
     }
 
-    nav.append(a);
+    li.appendChild(a);
+    ul.appendChild(li);
 }
+
+// Insert the navigation at the beginning of the body
+document.body.prepend(nav);
+
+console.log("Navigation menu created!");
