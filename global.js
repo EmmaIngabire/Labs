@@ -42,3 +42,31 @@ for (let p of pages) {
 
     nav.append(a);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const pages = [
+        {url: "index.html", title: "Home"},
+        {url: "Projects/index.html", title: "Projects"},
+        {url: "Contact/index.html", title: "Contact"},
+        {url: "Contact/resume.html", title: "Resume"},
+        {url: "https://github.com/EmmaIngabire", title: "GitHub"}
+    ];
+
+    const nav = document.getElementById('main-nav');
+    const ul = document.createElement("ul");
+    nav.appendChild(ul);
+
+    pages.forEach(page => {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.href = page.url;
+        a.textContent = page.title;
+
+        if (page.url.startsWith("http")) {
+            a.target = "_blank";
+        }
+
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
+});
