@@ -46,3 +46,36 @@ for (let p of pages) {
 
     nav.append(a);
 }
+// Insert the color scheme switcher at the beginning of the body
+document.body.insertAdjacentHTML("afterbegin", `
+    <label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+  `);
+  
+  // Get a reference to the select element
+  const select = document.querySelector('.color-scheme select');
+  
+  // Function to set the color scheme
+  function setColorScheme(scheme) {
+    document.documentElement.style.setProperty("color-scheme", scheme);
+    select.value = scheme;
+    localStorage.colorScheme = scheme;
+  }
+  
+  // Add event listener for changes
+  select.addEventListener("input", function (event) {
+    setColorScheme(event.target.value);
+  });
+  
+  // Check for saved preference on page load
+  if ("colorScheme" in localStorage) {
+    setColorScheme(localStorage.colorScheme);
+  } else {
+    setColorScheme("light dark"); // Default to automatic
+  }
