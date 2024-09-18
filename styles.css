@@ -149,19 +149,3 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1; /* Reduce leading to make headings more compact */
   text-wrap: balance; /* Ensure balanced text wrapping */
 }
-/* Color scheme switcher styles */
-.color-scheme {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 80%;
-}
-
-.color-scheme select {
-  font-family: inherit;
-}
-
-/* Add this to enable automatic dark mode */
-:root {
-  color-scheme: light dark;
-}
