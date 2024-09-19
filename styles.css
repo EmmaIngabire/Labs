@@ -154,3 +154,45 @@ nav {
   display: block;
   margin-bottom: 20px;
 }
+/* Keep all your existing CSS, but replace or modify the navigation styles as follows: */
+
+/* Navigation styles */
+nav {
+  background-color: #f4f4f4;
+  border-bottom: 3px solid #ddd;
+  padding: 0 20px;
+}
+
+nav a {
+  display: inline-block;
+  padding: 10px 0;
+  margin-right: 20px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: bold;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--color-hover);
+  border-bottom: 5px solid var(--color-hover);
+}
+
+/* Active link styles */
+nav a.current {
+  border-bottom: 5px solid var(--color-accent);
+  color: var(--color-text);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  nav a {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
