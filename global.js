@@ -10,9 +10,10 @@ currentLink?.classList.add("current");
 // Define your pages
 const pages = [
     {url: "", title: "Home"},
-    {url: "projects/", title: "Projects"},
-    {url: "resume.html", title: "Resume"},
-    {url: "https://github.com/yourusername", title: "GitHub"}
+    {url: "Projects/", title: "Projects"},
+    {url: "Contact/", title: "Projects"},
+    {url: "Contact/resume.html", title: "Resume"},
+    {url: "https://github.com/dashboard", title: "GitHub"}
 ];
 // Check if we're on the home page
 const ARE_WE_HOME = document.documentElement.classList.contains("home");
