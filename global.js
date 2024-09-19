@@ -100,22 +100,38 @@ function setupColorScheme() {
     }
   }
   
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form[action^="mailto:"]');
+  // global.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
     
+    // Add event listener for form submission
     form?.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+        // Prevent the default form submission
+        event.preventDefault();
         
-        const data = new FormData(this);
-        let mailtoUrl = this.action + '?';
+        // Create a new FormData object from the form
+        const data = new FormData(form);
+        
+        // Initialize the mailto URL
+        let mailtoUrl = 'mailto:emmangabire2000@gmail.com';
+        
+        // Get subject and body from the form and encode them
+        let subject = '';
+        let body = '';
         
         for (let [name, value] of data) {
-            mailtoUrl += `${name}=${encodeURIComponent(value)}&`;
+            if (name === 'subject') {
+                subject = encodeURIComponent(value);
+            } else if (name === 'body') {
+                body = encodeURIComponent(value);
+            }
         }
         
-        mailtoUrl = mailtoUrl.slice(0, -1); // Remove the trailing '&'
+        // Build the final mailto URL with subject and body
+        mailtoUrl += `?subject=${subject}&body=${body}`;
         
-        // Open the mailto URL
-        window.location.href = mailtoUrl;
+        // Open the mailto link
+        location.href = mailtoUrl;
     });
 });
