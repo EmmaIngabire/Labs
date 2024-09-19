@@ -100,22 +100,22 @@ function setupColorScheme() {
     }
   }
   
-  document.addEventListener('DOMContentLoaded', setupColorScheme);
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form[action^="mailto:"]');
     
     form?.addEventListener('submit', function(event) {
-        event.preventDefault();
+        event.preventDefault(); // Prevent form submission
         
         const data = new FormData(this);
-        let url = this.action + '?';
+        let mailtoUrl = this.action + '?';
         
         for (let [name, value] of data) {
-            url += `${name}=${encodeURIComponent(value)}&`;
+            mailtoUrl += `${name}=${encodeURIComponent(value)}&`;
         }
         
-        url = url.slice(0, -1); // Remove the trailing '&'
+        mailtoUrl = mailtoUrl.slice(0, -1); // Remove the trailing '&'
         
-        location.href = url;
+        // Open the mailto URL
+        window.location.href = mailtoUrl;
     });
 });
