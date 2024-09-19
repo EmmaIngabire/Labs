@@ -196,3 +196,18 @@ nav a.current {
     margin-bottom: 10px;
   }
 }
+.theme-switcher {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  font-size: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Ensure the container has a relative positioning context */
+body {
+  position: relative;
+}
