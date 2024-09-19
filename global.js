@@ -48,3 +48,28 @@ function createNavigation() {
 
 // Call the function to create the navigation
 createNavigation();
+function setupColorScheme() {
+    const select = document.querySelector('select');
+    
+    if (!select) {
+      console.error('Color scheme select element not found');
+      return;
+    }
+  
+    function setColorScheme(scheme) {
+      document.documentElement.style.setProperty('color-scheme', scheme);
+      select.value = scheme;
+      localStorage.setItem('colorScheme', scheme);
+    }
+  
+    select.addEventListener('change', function(event) {
+      setColorScheme(event.target.value);
+    });
+  
+    const savedScheme = localStorage.getItem('colorScheme');
+    if (savedScheme) {
+      setColorScheme(savedScheme);
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', setupColorScheme);
