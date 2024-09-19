@@ -48,28 +48,57 @@ function createNavigation() {
 
 // Call the function to create the navigation
 createNavigation();
+
 function setupColorScheme() {
-    const select = document.querySelector('select');
+    console.log("setupColorScheme function called");
+    let select = document.querySelector('.color-scheme select');
     
     if (!select) {
-      console.error('Color scheme select element not found');
-      return;
+      console.log("Select element not found, creating it");
+      const label = document.createElement('label');
+      label.className = 'color-scheme';
+      label.textContent = 'Theme: ';
+      
+      select = document.createElement('select');
+      const options = [
+        {value: 'light dark', text: 'Automatic'},
+        {value: 'light', text: 'Light'},
+        {value: 'dark', text: 'Dark'}
+      ];
+      
+      options.forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.text;
+        select.appendChild(optionElement);
+      });
+      
+      label.appendChild(select);
+      document.body.insertAdjacentElement('afterbegin', label);
     }
   
+    console.log("Select element:", select);
+  
     function setColorScheme(scheme) {
+      console.log("Setting color scheme to:", scheme);
       document.documentElement.style.setProperty('color-scheme', scheme);
       select.value = scheme;
       localStorage.setItem('colorScheme', scheme);
     }
   
     select.addEventListener('change', function(event) {
+      console.log("Select value changed to:", event.target.value);
       setColorScheme(event.target.value);
     });
   
     const savedScheme = localStorage.getItem('colorScheme');
     if (savedScheme) {
+      console.log("Found saved scheme:", savedScheme);
       setColorScheme(savedScheme);
+    } else {
+      console.log("No saved scheme found");
     }
   }
   
   document.addEventListener('DOMContentLoaded', setupColorScheme);
+  
