@@ -1,56 +1,156 @@
-/* Navigation Styles */
-#main-nav {
-  background-color: #333;
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+:root {
+  --color-accent: oklch(65% 50% 0);
+  --color-text: #333;
+  --color-hover: #666;
 }
 
-#main-nav ul {
-  list-style-type: none;
-  padding: 0;
+html, body {
+  accent-color: var(--color-accent);
+}
+
+body {
+  max-width: 100ch;
+  margin: auto;
+  padding: 0 1em;
+  color: var(--color-text);
+}
+
+#my_face {
+  max-width: 60%;
+  height: auto;
+}
+
+/* Reset default styles */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navigation styles */
+nav {
+  background-color: #f4f4f4;
+  border-bottom: 3px solid #ddd;
+}
+
+nav ul {
+  list-style-type: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 0 20px;
 }
 
-#main-nav li {
-  margin: 0 15px;
+nav ul li {
+  margin-right: 20px;
 }
 
-#main-nav a {
-  color: white;
+nav ul li a {
+  display: block;
+  padding: 10px 0;
   text-decoration: none;
+  color: var(--color-text);
   font-weight: bold;
-  font-size: 18px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-#main-nav a:hover {
-  background-color: #555;
+nav ul li a:hover {
+  color: var(--color-hover);
+  border-bottom: 5px solid var(--color-hover);
+}
+
+/* Active link styles */
+nav ul li a.active {
+  border-bottom: 5px solid var(--color-accent);
+  color: var(--color-text);
+}
+
+/* Form styles */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+form label,
+form input,
+form textarea,
+form button {
+  font: inherit;
+}
+
+form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+form input,
+form textarea,
+form button {
+  width: 100%;
+}
+
+form button[type="submit"] {
+  grid-column: 1 / -1;
+  margin-top: 1em;
+  padding: 0.5em;
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+  background-color: color-mix(in oklch, var(--color-accent), black 10%);
 }
 
 /* Responsive design */
 @media (max-width: 600px) {
-  #main-nav ul {
-      flex-direction: column;
-      align-items: center;
+  nav ul {
+    flex-direction: column;
   }
-
-  #main-nav li {
-      margin: 10px 0;
+  
+  nav ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
 
-/* Adjusting main content for the sticky nav */
-body {
-  padding-top: 60px; /* Adjust this value based on your nav height */
+/* Global image styles */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Active link style */
-#main-nav a.active {
-  background-color: #9aa09a;
+/* Projects grid layout */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+}
+
+/* Projects article styling */
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid; /* Use subgrid for content alignment */
+  grid-row: span 3;
+}
+
+.projects h2 {
+  margin: 0; /* Remove default margin to prevent excessive spacing */
+}
+
+/* Heading styles */
+h1 {
+  font-size: 400%; /* Make the main heading significantly larger */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1; /* Reduce leading to make headings more compact */
+  text-wrap: balance; /* Ensure balanced text wrapping */
+}
+/* Ensure navigation is visible */
+nav {
+  display: block;
+  margin-bottom: 20px;
 }
