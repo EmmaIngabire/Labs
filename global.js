@@ -11,7 +11,7 @@ currentLink?.classList.add("current");
 const pages = [
     {url: "", title: "Home"},
     {url: "Projects/", title: "Projects"},
-    {url: "Contact/", title: "Projects"},
+    {url: "Contact/", title: "Contact"},
     {url: "Contact/resume.html", title: "Resume"},
     {url: "https://github.com/dashboard", title: "GitHub"}
 ];
