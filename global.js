@@ -101,3 +101,21 @@ function setupColorScheme() {
   }
   
   document.addEventListener('DOMContentLoaded', setupColorScheme);
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action^="mailto:"]');
+    
+    form?.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const data = new FormData(this);
+        let url = this.action + '?';
+        
+        for (let [name, value] of data) {
+            url += `${name}=${encodeURIComponent(value)}&`;
+        }
+        
+        url = url.slice(0, -1); // Remove the trailing '&'
+        
+        location.href = url;
+    });
+});
