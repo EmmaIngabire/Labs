@@ -56,7 +56,6 @@ function setupColorScheme() {
     if (!select) {
       console.log("Select element not found, creating it");
       const label = document.createElement('label');
-      label.className = 'color-scheme';
       label.className = 'color-scheme theme-switcher'; 
       label.textContent = 'Theme: ';
       
