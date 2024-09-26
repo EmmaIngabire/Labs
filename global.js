@@ -115,4 +115,8 @@ function setupColorScheme() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', setupContactForm);
+document.addEventListener('DOMContentLoaded', function() {
+  setupColorScheme();
+  setupContactForm();
+  // Any other initialization functions...
+});
