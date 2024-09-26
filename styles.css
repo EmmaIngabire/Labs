@@ -3,6 +3,8 @@
   --color-text: #333;
   --color-hover: #666;
   --color-background: #ffffff;
+  --nav-background: #f4f4f4;
+  --nav-border: #ddd;
 }
 
 html, body {
@@ -34,6 +36,8 @@ body {
 nav {
   background-color: #f4f4f4;
   border-bottom: 3px solid #ddd;
+  background-color: var(--nav-background);
+  border-bottom: 3px solid var(--nav-border);
 }
 
 nav ul {
@@ -204,17 +208,36 @@ nav a.current {
     --color-text: #ffffff;
     --color-hover: #cccccc;
     --color-background: #333333;
+    --nav-background: #222222;
+    --nav-border: #444444;
   }
 }
+[data-theme="light"] {
+  --color-text: #333;
+  --color-hover: #666;
+  --color-background: #ffffff;
+  --nav-background: #f4f4f4;
+  --nav-border: #ddd;
+}
+
+[data-theme="dark"] {
+  --color-text: #ffffff;
+  --color-hover: #cccccc;
+  --color-background: #333333;
+  --nav-background: #222222;
+  --nav-border: #444444;
+}
 .theme-switcher {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   z-index: 1000;
   font-size: 0.8rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--nav-background);
+  color: var(--color-text);
   padding: 5px;
   border-radius: 4px;
+  border: 1px solid var(--nav-border);
 }
 
 /* Ensure the container has a relative positioning context */

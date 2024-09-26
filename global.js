@@ -48,58 +48,56 @@ function createNavigation() {
 
 // Call the function to create the navigation
 createNavigation();
-
 function setupColorScheme() {
-    console.log("setupColorScheme function called");
-    let select = document.querySelector('.color-scheme select');
-    
-    if (!select) {
+  console.log("setupColorScheme function called");
+  let select = document.querySelector('.color-scheme select');
+  
+  if (!select) {
       console.log("Select element not found, creating it");
       const label = document.createElement('label');
-      label.className = 'color-scheme theme-switcher'; 
+      label.className = 'color-scheme theme-switcher';
       label.textContent = 'Theme: ';
       
       select = document.createElement('select');
       const options = [
-        {value: 'light dark', text: 'Automatic'},
-        {value: 'light', text: 'Light'},
-        {value: 'dark', text: 'Dark'}
+          {value: 'auto', text: 'Automatic'},
+          {value: 'light', text: 'Light'},
+          {value: 'dark', text: 'Dark'}
       ];
       
       options.forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option.value;
-        optionElement.textContent = option.text;
-        select.appendChild(optionElement);
+          const optionElement = document.createElement('option');
+          optionElement.value = option.value;
+          optionElement.textContent = option.text;
+          select.appendChild(optionElement);
       });
       
       label.appendChild(select);
       document.body.insertAdjacentElement('afterbegin', label);
-    }
-  
-    console.log("Select element:", select);
-  
-    function setColorScheme(scheme) {
+  }
+
+  console.log("Select element:", select);
+
+  function setColorScheme(scheme) {
       console.log("Setting color scheme to:", scheme);
-      document.documentElement.style.setProperty('color-scheme', scheme);
+      if (scheme === 'auto') {
+          document.documentElement.removeAttribute('data-theme');
+      } else {
+          document.documentElement.setAttribute('data-theme', scheme);
+      }
       select.value = scheme;
       localStorage.setItem('colorScheme', scheme);
-    }
-  
-    select.addEventListener('change', function(event) {
+  }
+
+  select.addEventListener('change', function(event) {
       console.log("Select value changed to:", event.target.value);
       setColorScheme(event.target.value);
-    });
-  
-    const savedScheme = localStorage.getItem('colorScheme');
-    if (savedScheme) {
-      console.log("Found saved scheme:", savedScheme);
-      setColorScheme(savedScheme);
-    } else {
-      console.log("No saved scheme found");
-    }
-  }
-  
+  });
+
+  const savedScheme = localStorage.getItem('colorScheme') || 'auto';
+  console.log("Found saved scheme:", savedScheme);
+  setColorScheme(savedScheme);
+}
   function setupContactForm() {
     const form = document.getElementById('contactForm');
     if (form) {
