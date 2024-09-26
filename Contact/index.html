@@ -4,30 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-     <!-- Link to the CSS file -->
-     <link rel="stylesheet" href="../styles.css">
-
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-   
     <h1>Contact</h1>
-    <form action = "mailto =emmangabire2000@gmail.com" >
-    <!-- Sender's Email Field -->
-    <label for="email">Your Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
-    
-    <!-- Subject Field -->
-    <label for="subject">Subject:</label><br>
-    <input type="text" id="subject" name="subject" required><br><br>
-    
-    <!-- Message Field -->
-    <label for="body">Your Message:</label><br>
-    <textarea id="body" name="body" rows="6" cols="50" required></textarea><br><br>
-    
-    <!-- Submit Button -->
-    <button type="submit" >submit </button>
-    
-</form>
-<script src="../global.js" type="module"></script>
+    <form id="contactForm">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+        
+        <label for="body">Your Message:</label>
+        <textarea id="body" name="body" rows="6" cols="50" required></textarea>
+        
+        <button type="submit">Submit</button>
+    </form>
+    <script src="../global.js" type="module"></script>
 </body>
 </html>

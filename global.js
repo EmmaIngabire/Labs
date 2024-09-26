@@ -100,38 +100,19 @@ function setupColorScheme() {
     }
   }
   
-  // global.js
-
-document.addEventListener('DOMContentLoaded', function() {
+  function setupContactForm() {
     const form = document.getElementById('contactForm');
-    
-    // Add event listener for form submission
-    form?.addEventListener('submit', function(event) {
-        // Prevent the default form submission
-        event.preventDefault();
-        
-        // Create a new FormData object from the form
-        const data = new FormData(form);
-        
-        // Initialize the mailto URL
-        let mailtoUrl = 'mailto:emmangabire2000@gmail.com';
-        
-        // Get subject and body from the form and encode them
-        let subject = '';
-        let body = '';
-        
-        for (let [name, value] of data) {
-            if (name === 'subject') {
-                subject = encodeURIComponent(value);
-            } else if (name === 'body') {
-                body = encodeURIComponent(value);
-            }
-        }
-        
-        // Build the final mailto URL with subject and body
-        mailtoUrl += `?subject=${subject}&body=${body}`;
-        
-        // Open the mailto link
-        location.href = mailtoUrl;
-    });
-});
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const data = new FormData(form);
+            let mailtoUrl = 'mailto:emmangabire2000@gmail.com';
+            let subject = encodeURIComponent(data.get('subject') || '');
+            let body = encodeURIComponent(data.get('body') || '');
+            mailtoUrl += `?subject=${subject}&body=${body}`;
+            location.href = mailtoUrl;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', setupContactForm);
